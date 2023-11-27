@@ -37,7 +37,6 @@ fn count_iterator(map: &HashMap<String, Progress>, value: Progress) -> usize {
         .filter(|val| *val == &value)
         .collect::<Vec<_>>()
         .len()
-    // todo!();
 }
 
 fn count_collection_for(collection: &[HashMap<String, Progress>], value: Progress) -> usize {
@@ -59,7 +58,8 @@ fn count_collection_iterator(collection: &[HashMap<String, Progress>], value: Pr
     collection
         .iter()
         .map(|map| count_iterator(map, value))
-        .fold(0, |acc, elem| acc + elem)
+        // .fold(0, |acc, elem| acc + elem)
+        .sum()
 }
 
 #[cfg(test)]
