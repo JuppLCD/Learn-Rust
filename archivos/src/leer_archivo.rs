@@ -3,10 +3,11 @@
     io::{ErrorKind, Read},
 }; */
 
-use std::fs::read_to_string;
+use std::{fs::read_to_string, path::Path};
 
 pub fn leer_archivo() {
-    let archivo = "prueba.txt";
+    let archivo = Path::new("./src/archivo_prueba/prueba.txt");
+
     //* Forma larga de leer un archivo, con validacion de que existe y en caso de que no su creacion
     /* let file = File::open(archivo);
 

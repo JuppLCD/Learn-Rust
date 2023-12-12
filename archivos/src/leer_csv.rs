@@ -1,7 +1,9 @@
-use std::error::Error;
+use std::{error::Error, path::Path};
 
 pub fn leer_csv() {
-    if let Err(e) = leer_archivo_csv("prueba.csv") {
+    let archivo = Path::new("./src/archivo_prueba/prueba.csv");
+
+    if let Err(e) = leer_archivo_csv(archivo.to_str().unwrap()) {
         eprintln!("{e}"); // eprintln! es una macro especial para pintar por terminal los errores
     }
 }

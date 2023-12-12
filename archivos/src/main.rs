@@ -5,5 +5,7 @@ pub mod leer_csv;
 pub mod serializando_json;
 
 fn main() {
-    println!("Hola mundo");
+    leer_archivo::leer_archivo();
+    leer_csv::leer_csv();
+    // println!("Hola mundo");
 }
