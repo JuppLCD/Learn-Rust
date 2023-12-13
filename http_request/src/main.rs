@@ -3,6 +3,7 @@ use reqwest::blocking::Client;
 fn main() {
     get_users();
     store_user();
+    update_user();
 }
 
 fn get_users() {
@@ -13,6 +14,7 @@ fn get_users() {
 
     let body = res.text().unwrap();
 
+    println!("\n\n################## Get all users ##################");
     println!("{body}");
 }
 
@@ -53,5 +55,25 @@ fn store_user() {
 
     let body = res.text().unwrap();
 
+    println!("\n\n################## Store user ##################");
+    println!("{body}");
+}
+
+fn update_user() {
+    let url = "https://jsonplaceholder.typicode.com";
+
+    let to_update = r#"{"name": "Foo"}"#;
+
+    let client = Client::new();
+    let res = client
+        .patch(format!("{url}/users/1"))
+        .body(to_update)
+        .header("Content-type", "application/json; charset=UTF-8")
+        .send()
+        .unwrap();
+
+    let body = res.text().unwrap();
+
+    println!("\n\n################## Update user ##################");
     println!("{body}");
 }
