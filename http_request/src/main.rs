@@ -1,9 +1,10 @@
-use reqwest::blocking::Client;
+use reqwest::{blocking::Client, StatusCode};
 
 fn main() {
     get_users();
     store_user();
     update_user();
+    delete_user();
 }
 
 fn get_users() {
@@ -76,4 +77,22 @@ fn update_user() {
 
     println!("\n\n################## Update user ##################");
     println!("{body}");
+}
+
+fn delete_user() {
+    let url = "https://jsonplaceholder.typicode.com";
+
+    let user_id_delete = 1;
+
+    let client = Client::new();
+    let res = client
+        .delete(format!("{url}/users/{user_id_delete}"))
+        .send()
+        .unwrap();
+
+    println!("\n\n################## Delete user with id {user_id_delete} ##################");
+    match res.status() {
+        StatusCode::OK => println!("User successfully deleted"),
+        _ => println!("There was a problem deleting the user"),
+    };
 }
